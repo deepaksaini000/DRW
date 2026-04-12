@@ -1,0 +1,14 @@
+{
+  "name": "Seva Attendance Report",
+  "short_name": "Seva Report",
+  "description": "Mark sevadaar attendance and generate WhatsApp reports",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#0f0520",
+  "theme_color": "#1a0533",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
