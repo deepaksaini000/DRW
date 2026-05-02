@@ -1,36 +1,37 @@
+
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
-function renderUsers() {
-  let list = document.getElementById("userList");
-  if (!list) return;
-
-  list.innerHTML = "";
-  users.forEach((u, i) => {
-    list.innerHTML += `
-      <li>
-        ${u}
-        <button onclick="deleteUser(${i})">❌</button>
-      </li>
-    `;
-  });
-
-  let count = document.getElementById("userCount");
-  if (count) count.innerText = users.length;
+function render(){
+let list=document.getElementById("tbody");
+if(!list)return;
+list.innerHTML="";
+users.forEach((u,i)=>{
+list.innerHTML+=`<tr>
+<td>${u.name}</td>
+<td>${u.email}</td>
+<td>${u.license}</td>
+<td><button onclick="del(${i})">Delete</button></td>
+</tr>`;
+});
 }
 
-function addUser() {
-  let name = document.getElementById("name").value;
-  if (!name) return;
-  users.push(name);
-  localStorage.setItem("users", JSON.stringify(users));
-  document.getElementById("name").value = "";
-  renderUsers();
+function add(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let license=document.getElementById("license").value;
+users.push({name,email,license});
+localStorage.setItem("users",JSON.stringify(users));
+closeModal();
+render();
 }
 
-function deleteUser(i) {
-  users.splice(i, 1);
-  localStorage.setItem("users", JSON.stringify(users));
-  renderUsers();
+function del(i){
+users.splice(i,1);
+localStorage.setItem("users",JSON.stringify(users));
+render();
 }
 
-renderUsers();
+function openModal(){document.getElementById("modal").style.display="block"}
+function closeModal(){document.getElementById("modal").style.display="none"}
+
+render();
